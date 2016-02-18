@@ -1,0 +1,28 @@
+---
+
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - name: install the latest version of xmonad
+      dnf: name={{ item }} state=latest
+      with_items:
+        - xmonad
+        - xmonad-mate
+        - ghc-xmonad-contrib-devel
+      become: true
+      become_user: root
+
+    - name: install the latest version of emacs
+      dnf: name={{ item }} state=latest
+      with_items:
+        - emacs
+      become: true
+      become_user: root
+
+    - name: get latest versions of prde components
+      git: repo={{ item.repo }} dest=~/projects/{{ item.dest }}
+      with_items:
+        - { repo: 'https://github.com/prde/prde-xmonad-config.git', dest: 'prde-xmonad-config' }
+        - { repo: 'https://github.com/prde/prde-emacs-config.git', dest: 'prde-emacs-config' }
+        - { repo: 'https://github.com/prde/prde-install.git', dest: 'prde-install' }
