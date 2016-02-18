@@ -21,8 +21,14 @@
       become_user: root
 
     - name: get latest versions of prde components
-      git: repo={{ item.repo }} dest=~/projects/{{ item.dest }}
+      git: repo={{ item.repo }} dest=~/projects/prde/{{ item.dest }}
       with_items:
         - { repo: 'https://github.com/prde/prde-xmonad-config.git', dest: 'prde-xmonad-config' }
         - { repo: 'https://github.com/prde/prde-emacs-config.git', dest: 'prde-emacs-config' }
         - { repo: 'https://github.com/prde/prde-install.git', dest: 'prde-install' }
+
+    - name: create component links
+      file: src=~/projects/prde/{{ item.src }} dest=~/{{ item.dest }} state=link
+      with_items:
+        - { src: 'prde-xmonad-config/xmonad-fedora.hs', dest: '.xmonad/xmonad.hs' }
+        - { src: 'prde-emacs-config', dest: '.emacs.d' }
