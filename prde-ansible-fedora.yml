@@ -20,12 +20,19 @@
       become: true
       become_user: root
 
+    - name: create directories
+      file: path=~/{{ item }} state=directory mode=0755
+      with_items:
+        - .xmonad
+        - projects/prde
+
     - name: get latest versions of prde components
-      git: repo={{ item.repo }} dest=~/projects/prde/{{ item.dest }}
+      git: repo={{ item.repo }} dest=~/projects/prde/{{ item.dest }} update=no clone=yes
       with_items:
         - { repo: 'https://github.com/prde/prde-xmonad-config.git', dest: 'prde-xmonad-config' }
         - { repo: 'https://github.com/prde/prde-emacs-config.git', dest: 'prde-emacs-config' }
         - { repo: 'https://github.com/prde/prde-install.git', dest: 'prde-install' }
+      ignore_errors: yes
 
     - name: create component links
       file: src=~/projects/prde/{{ item.src }} dest=~/{{ item.dest }} state=link
