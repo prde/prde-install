@@ -40,17 +40,18 @@
       file: src=~/projects/prde/{{ item.src }} dest=~/{{ item.dest }} state=link
       with_items:
         - { src: 'prde-xmonad-config/xmonad-fedora.hs', dest: '.xmonad/xmonad.hs' }
-        - { src: 'prde-xmonad-config/prde.png', dest: '.xmonad/prde.png' }
+        - { src: 'prde-xmonad-config/prde.png', dest: '.xmonad/wallpaper.png' }
         - { src: 'prde-emacs-config', dest: '.emacs.d' }
+      ignore_errors: yes
 
     - name: set background
       shell: gsettings set org.mate.background {{ item.key }} "{{ item.value }}"
       with_items:
-        - { key: 'picture-filename', value: '~/.xmonad/prde.png' }
-        - { key: 'color-shading-type', value: 'solid' }
         - { key: 'picture-options', value: 'centered' }
+        - { key: 'color-shading-type', value: 'solid' }
+        - { key: 'picture-filename', value: '{{ ansible_env.HOME }}/.xmonad/wallpaper.png' }
         - { key: 'primary-color', value: '#000000000000' }
-        - { key: 'draw-background', value: 'true' }
+        - { key: 'secondary-color', value: '#3c3c8f8f2525' }
 
     - name: set gtk theme
       shell: gsettings set org.mate.interface gtk-theme "Blue-Submarine"
