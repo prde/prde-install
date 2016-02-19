@@ -10,6 +10,8 @@
         - xmonad
         - xmonad-mate
         - ghc-xmonad-contrib-devel
+        - mate-themes
+        - mate-icon-theme-faenza
       become: true
       become_user: root
 
@@ -38,4 +40,14 @@
       file: src=~/projects/prde/{{ item.src }} dest=~/{{ item.dest }} state=link
       with_items:
         - { src: 'prde-xmonad-config/xmonad-fedora.hs', dest: '.xmonad/xmonad.hs' }
+        - { src: 'prde-xmonad-config/prde.png', dest: '.xmonad/prde.png' }
         - { src: 'prde-emacs-config', dest: '.emacs.d' }
+
+    - name: set background
+      shell: gsettings set org.mate.background {{ item.key }} "{{ item.value }}"
+      with_items:
+        - { key: 'picture-filename', value: '~/.xmonad/prde.png' }
+        - { key: 'color-shading-type', value: 'solid' }
+        - { key: 'picture-options', value: 'centered' }
+        - { key: 'primary-color', value: '#000000000000' }
+        - { key: 'draw-background', value: 'true' }
