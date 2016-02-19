@@ -51,3 +51,6 @@
         - { key: 'picture-options', value: 'centered' }
         - { key: 'primary-color', value: '#000000000000' }
         - { key: 'draw-background', value: 'true' }
+
+   - name: set gtk theme
+      shell: gsettings set org.mate.interface gtk-theme "Blue-Submarine"
