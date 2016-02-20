@@ -13,6 +13,8 @@
         - mate-themes
         - mate-icon-theme-faenza
         - xmonad-log-applet-mate
+        - gnome-terminal
+        - ipython
       become: true
       become_user: root
 
