@@ -12,6 +12,7 @@
         - ghc-xmonad-contrib-devel
         - mate-themes
         - mate-icon-theme-faenza
+        - xmonad-log-applet-mate
       become: true
       become_user: root
 
