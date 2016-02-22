@@ -13,6 +13,7 @@
         - mate-themes
         - mate-icon-theme-faenza
         - xmonad-log-applet-mate
+        - mate-power-manager
         - gnome-terminal
         - ipython
       become: true
