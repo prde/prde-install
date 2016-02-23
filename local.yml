@@ -46,6 +46,7 @@
       file: src=~/projects/prde/{{ item.src }} dest=~/{{ item.dest }} state=link
       with_items:
         - { src: 'prde-xmonad-config/xmonad-fedora.hs', dest: '.xmonad/xmonad.hs' }
+        - { src: 'prde-xmonad-config/conkyrc', dest: '.conkyrc' }
         - { src: 'prde-xmonad-config/prde.png', dest: '.xmonad/wallpaper.png' }
         - { src: 'prde-emacs-config', dest: '.emacs.d' }
       ignore_errors: yes
