@@ -64,4 +64,4 @@
       shell: gsettings set org.mate.interface gtk-theme "Blue-Submarine"
 
     - name: set default editor
-      shell: [ "$(grep EDITOR ~/.bashrc)" ] || echo "export EDITOR=\"emacsclient -c\"" >> ~/.bashrc
+      shell: '[ "$(grep EDITOR ~/.bashrc)" ] || echo "export EDITOR=\"emacsclient -c\"" >> ~/.bashrc'
