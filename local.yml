@@ -17,6 +17,7 @@
         - network-manager-applet
         - gnome-terminal
         - conky
+        - evince
       become: true
       become_user: root
 
