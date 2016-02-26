@@ -35,6 +35,9 @@
         - .xmonad
         - projects/prde
 
+    - name: set auto crlf as input for git
+      shell: git config --global core.autocrlf input
+
     - name: get latest versions of prde components
       git: repo={{ item.repo }} dest=~/projects/prde/{{ item.dest }} update=yes clone=yes
       with_items:
