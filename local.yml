@@ -4,10 +4,20 @@
   connection: local
 
   tasks:
+    - name: install latest versions of development tools
+      dnf: name={{ item }} state=latest
+      with_items:
+        - git
+        - gcc
+        - emacs
+        - ipython
+        - texlive
+      become: true
+      become_user: root
+
     - name: install xmonad and mate as desktop environment
       dnf: name={{ item }} state=latest
       with_items:
-        - gcc
         - xmonad
         - xmonad-mate
         - ghc-xmonad-contrib-devel
@@ -19,15 +29,6 @@
         - gnome-terminal
         - conky
         - evince
-        - git
-      become: true
-      become_user: root
-
-    - name: install latest versions of development tools
-      dnf: name={{ item }} state=latest
-      with_items:
-        - emacs
-        - ipython
       become: true
       become_user: root
 
