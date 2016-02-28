@@ -7,6 +7,7 @@
     - name: install xmonad and mate as desktop environment
       dnf: name={{ item }} state=latest
       with_items:
+        - gcc
         - xmonad
         - xmonad-mate
         - ghc-xmonad-contrib-devel
@@ -18,6 +19,7 @@
         - gnome-terminal
         - conky
         - evince
+        - git
       become: true
       become_user: root
 
@@ -35,8 +37,11 @@
         - .xmonad
         - projects/prde
 
-    - name: set auto crlf as input for git
-      shell: git config --global core.autocrlf input
+    - name: set global git options
+      shell: git config --global {{ item.name }} {{ item.value }}
+      with_items:
+        - { name: 'core.autocrlf', value: 'input' }
+        - { name: 'push.default', value: 'current' }
 
     - name: get latest versions of prde components
       git: repo={{ item.repo }} dest=~/projects/prde/{{ item.dest }} update=yes clone=yes
