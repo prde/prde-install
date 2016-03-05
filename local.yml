@@ -15,6 +15,18 @@
       become: true
       become_user: root
 
+    - name: install python packages
+      pip: name={{ item }} state=latest
+      with_items:
+        - rope
+        - jedi
+        - flake8
+        - importmagic
+        - autopep8
+        - yapf
+      become: true
+      become_user: root
+
     - name: install xmonad and mate as desktop environment
       dnf: name={{ item }} state=latest
       with_items:
