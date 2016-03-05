@@ -18,6 +18,7 @@
     - name: install python packages
       pip: name={{ item }} state=latest
       with_items:
+        - elpy
         - rope
         - jedi
         - flake8
