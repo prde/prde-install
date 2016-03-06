@@ -83,7 +83,7 @@
         - { src: 'prde-xmonad-config/conkyrc', dest: '.conkyrc' }
         - { src: 'prde-xmonad-config/prde.png', dest: '.xmonad/wallpaper.png' }
         - { src: 'prde-emacs-config', dest: '.emacs.d' }
-        - { src: 'prde-emacs-config/flake8', dest: '.config/flake8' }
+        - { src: 'prde-emacs-config/misc/flake8', dest: '.config/flake8' }
       ignore_errors: yes
 
     - name: set background
