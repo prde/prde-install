@@ -11,7 +11,6 @@
         - gcc
         - emacs
         - ipython
-        - texlive
       become: true
       become_user: root
 
@@ -45,6 +44,17 @@
       become: true
       become_user: root
 
+    - name: install latex
+      dnf name={{ item }} state=latest
+      with_items:
+        - texlive
+        - texlive-t2
+        - texlive-was
+        - texlive-minted
+        - texlive-collection-langcyrillic
+      become: true
+      become_user: root
+
     - name: create directories
       file: path=~/{{ item }} state=directory mode=0755
       with_items:
@@ -72,6 +82,7 @@
         - { src: 'prde-xmonad-config/conkyrc', dest: '.conkyrc' }
         - { src: 'prde-xmonad-config/prde.png', dest: '.xmonad/wallpaper.png' }
         - { src: 'prde-emacs-config', dest: '.emacs.d' }
+        - { src: 'prde-emacs-config/flake8', dest: '.config/flake8' }
       ignore_errors: yes
 
     - name: set background
