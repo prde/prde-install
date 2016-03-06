@@ -20,6 +20,7 @@
         - elpy
         - rope
         - jedi
+        - epc
         - flake8
         - importmagic
         - autopep8
