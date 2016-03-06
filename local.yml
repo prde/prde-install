@@ -45,7 +45,7 @@
       become_user: root
 
     - name: install latex
-      dnf name={{ item }} state=latest
+      dnf: name={{ item }} state=latest
       with_items:
         - texlive
         - texlive-t2
