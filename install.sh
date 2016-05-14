@@ -3,6 +3,7 @@
 ANSIBLE_PULL=/usr/bin/ansible-pull
 
 [ -x $ANSIBLE_PULL ] || sudo dnf install -y ansible
+[ -x /usr/bin/git ] || sudo dnf install -y git
 
 if [ -x $ANSIBLE_PULL ]
 then
