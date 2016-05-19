@@ -53,6 +53,11 @@
         - texlive-was
         - texlive-minted
         - texlive-collection-langcyrillic
+        - texlive-etoolbox
+        - texlive-cm
+        - texlive-cmcyr
+        - texlive-polyglossia
+        - texlive-euenc
       become: true
       become_user: root
 
