@@ -53,6 +53,12 @@
         - texlive-was
         - texlive-minted
         - texlive-collection-langcyrillic
+        - texlive-etoolbox
+        - texlive-cm
+        - texlive-cmcyr
+        - texlive-polyglossia
+        - texlive-euenc
+        - texlive-totcount
       become: true
       become_user: root
 
@@ -73,6 +79,7 @@
       with_items:
         - { repo: 'https://github.com/prde/prde-xmonad-config.git', dest: 'prde-xmonad-config' }
         - { repo: 'https://github.com/prde/prde-emacs-config.git', dest: 'prde-emacs-config' }
+        - { repo: 'https://github.com/prde/prde-motion.git', dest: 'prde-motion' }
         - { repo: 'https://github.com/prde/prde-install-fedora.git', dest: 'prde-install-fedora' }
       ignore_errors: yes
 
