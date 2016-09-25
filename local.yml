@@ -58,6 +58,7 @@
         - texlive-cmcyr
         - texlive-polyglossia
         - texlive-euenc
+        - texlive-totcount
       become: true
       become_user: root
 
