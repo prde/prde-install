@@ -12,6 +12,7 @@
         - emacs
         - ipython
         - docker
+        - python2-dnf
       become: true
       become_user: root
 
@@ -44,6 +45,8 @@
         - gnome-terminal
         - conky
         - evince
+        - xscreensaver
+        - xscreensaver-extras
       become: true
       become_user: root
 
@@ -94,6 +97,11 @@
         - { src: 'prde-emacs-config', dest: '.emacs.d' }
         - { src: 'prde-emacs-config/misc/flake8', dest: '.config/flake8' }
       ignore_errors: yes
+
+    - name: disable wayland
+      shell: sed -i "/WaylandEnable=false/s/^#//g" /etc/gdm/custom.conf
+      become: true
+      become_user: root
 
     - name: set background
       shell: gsettings set org.mate.background {{ item.key }} "{{ item.value }}"
