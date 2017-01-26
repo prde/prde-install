@@ -19,17 +19,19 @@
     - name: install python packages
       pip: name={{ item }} state=latest
       with_items:
+        - packaging
+        - importmagic
+        - flake8
         - elpy
         - rope
         - jedi
         - epc
-        - flake8
-        - importmagic
         - autopep8
         - yapf
         - hy
       become: true
       become_user: root
+      ignore_errors: yes
 
     - name: install xmonad and mate as desktop environment
       dnf: name={{ item }} state=latest
