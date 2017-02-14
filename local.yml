@@ -88,6 +88,8 @@
       shell: >
         sbcl --load ~/.quicklisp/quicklisp.lisp
         --eval '(quicklisp-quickstart:install :path "~/.quicklisp/")'
+        --eval '(ql-util:without-prompting (ql:add-to-init-file))'
+        --eval '(ql:quickload "quicklisp-slime-helper")'
       when: not quicklisp_installed.stat.exists
 
     - name: set global git options
@@ -115,8 +117,12 @@
         - { src: 'prde-emacs-config/misc/flake8', dest: '.config/flake8' }
       ignore_errors: yes
 
-    - name: disable wayland
-      shell: sed -i "/WaylandEnable=false/s/^#//g" /etc/gdm/custom.conf
+    - name: disable wayland until synergy gets support
+      lineinfile:
+        dest: /etc/gdm/custom.conf
+        regexp: '^#WaylandEnable=false'
+        line: 'WaylandEnable=false'
+        backrefs: yes
       become: true
       become_user: root
 
