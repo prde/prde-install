@@ -75,6 +75,20 @@
       with_items:
         - .xmonad
         - projects/prde
+        - .quicklisp
+
+    - name: download quicklisp
+      get_url: url=https://beta.quicklisp.org/quicklisp.lisp dest=~/.quicklisp/quicklisp.lisp
+
+    - name: check if quicklisp installed
+      stat: path=~/.quicklisp/setup.lisp
+      register: quicklisp_installed
+
+    - name: install quicklisp
+      shell: >
+        sbcl --load ~/.quicklisp/quicklisp.lisp
+        --eval '(quicklisp-quickstart:install :path "~/.quicklisp/")'
+      when: not quicklisp_installed.stat.exists
 
     - name: set global git options
       shell: git config --global {{ item.name }} {{ item.value }}
