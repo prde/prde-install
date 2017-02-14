@@ -13,6 +13,7 @@
         - ipython
         - docker
         - python2-dnf
+        - sbcl
       become: true
       become_user: root
 
