@@ -14,6 +14,7 @@
         - docker
         - python2-dnf
         - sbcl
+        - htop
       become: true
       become_user: root
 
