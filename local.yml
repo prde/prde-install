@@ -14,6 +14,8 @@
         - docker
         - python2-dnf
         - sbcl
+        - java-1.8.0-openjdk
+        - java-1.8.0-openjdk-devel
       become: true
       become_user: root
 
@@ -76,6 +78,10 @@
         - .xmonad
         - projects/prde
         - .quicklisp
+        - bin
+
+    - name: download lein
+      get_url: url=https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein dest=~/bin/lein
 
     - name: download quicklisp
       get_url: url=https://beta.quicklisp.org/quicklisp.lisp dest=~/.quicklisp/quicklisp.lisp
@@ -115,6 +121,7 @@
         - { src: 'prde-xmonad-config/prde.png', dest: '.xmonad/wallpaper.png' }
         - { src: 'prde-emacs-config', dest: '.emacs.d' }
         - { src: 'prde-emacs-config/misc/flake8', dest: '.config/flake8' }
+        - { src: 'prde-emacs-config/misc/profiles.clj', dest: '.lein/profiles.clj' }
       ignore_errors: yes
 
     - name: disable wayland until synergy gets support
