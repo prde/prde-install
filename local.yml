@@ -16,9 +16,23 @@
         - sbcl
         - java-1.8.0-openjdk
         - java-1.8.0-openjdk-devel
+        - haskell-platform
         - htop
       become: true
       become_user: root
+
+    - name: add haskell stack repository
+      shell: dnf copr enable petersen/stack -y
+      become: true
+      become_user: root
+
+    - name: install haskell stack
+      dnf: name=stack state=latest
+      become: true
+      become_user: root
+
+    - name: upgrade haskell stack
+      shell: stack upgrade
 
     - name: install python packages
       pip: name={{ item }} state=latest
