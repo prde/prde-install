@@ -16,7 +16,6 @@
         - sbcl
         - java-1.8.0-openjdk
         - java-1.8.0-openjdk-devel
-        - haskell-platform
         - htop
       become: true
       become_user: root
@@ -32,7 +31,10 @@
       become_user: root
 
     - name: upgrade haskell stack
-      shell: stack upgrade
+      shell: stack {{ command }}
+      with_items:
+        - setup
+        - upgrade
 
     - name: install python packages
       pip: name={{ item }} state=latest
