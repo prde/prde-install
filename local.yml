@@ -32,7 +32,7 @@
       become_user: root
 
     - name: upgrade haskell stack
-      shell: stack {{ command }}
+      shell: stack {{ item }}
       with_items:
         - setup
         - upgrade
