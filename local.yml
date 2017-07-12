@@ -10,7 +10,7 @@
         - git
         - gcc
         - emacs
-        - ipython
+        - python3-ipython
         - docker
         - python2-dnf
         - sbcl
@@ -20,6 +20,7 @@
         - plantuml
       become: true
       become_user: root
+      ignore_errors: yes
 
     - name: add haskell stack repository
       shell: dnf copr enable petersen/stack -y
