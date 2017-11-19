@@ -22,16 +22,6 @@
       become_user: root
       ignore_errors: yes
 
-    - name: download sbt repository
-      get_url: url=https://bintray.com/sbt/rpm/rpm dest=/etc/yum.repos.d/bintray-sbt-rpm.repo
-      become: true
-      become_user: root
-
-    - name: install sbt
-      dnf: name=sbt state=latest
-      become: true
-      become_user: root
-
     - name: add haskell stack repository
       shell: dnf copr enable petersen/stack -y
       become: true
@@ -110,6 +100,19 @@
         - bin
         - .lein
         - .sbt/1.0/plugins
+
+    - name: download sbt repository
+      get_url: url=https://bintray.com/sbt/rpm/rpm dest=/etc/yum.repos.d/bintray-sbt-rpm.repo
+      become: true
+      become_user: root
+
+    - name: install sbt
+      dnf: name=sbt state=latest
+      become: true
+      become_user: root
+
+    - name: sbt first start
+      shell: sbt exit
 
     - name: download lein
       get_url: url=https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein dest=~/bin/lein mode=0744
