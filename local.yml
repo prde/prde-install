@@ -22,6 +22,16 @@
       become_user: root
       ignore_errors: yes
 
+    - name: download sbt repository
+      get_url: url=https://bintray.com/sbt/rpm/rpm dest=/etc/yum.repos.d/bintray-sbt-rpm.repo
+      become: true
+      become_user: root
+
+    - name: install sbt
+      dnf: name=sbt state=latest
+      become: true
+      become_user: root
+
     - name: add haskell stack repository
       shell: dnf copr enable petersen/stack -y
       become: true
@@ -132,15 +142,22 @@
         - { repo: 'https://github.com/prde/prde-install-fedora.git', dest: 'prde-install-fedora' }
       ignore_errors: yes
 
-    - name: create component links
+    - name: create component links for xmonad
       file: src=~/projects/prde/{{ item.src }} dest=~/{{ item.dest }} state=link
       with_items:
         - { src: 'prde-xmonad-config/xmonad-fedora.hs', dest: '.xmonad/xmonad.hs' }
         - { src: 'prde-xmonad-config/conkyrc', dest: '.conkyrc' }
         - { src: 'prde-xmonad-config/prde.png', dest: '.xmonad/wallpaper.png' }
+      ignore_errors: yes
+
+    - name: create component links for emacs
+      file: src=~/projects/prde/{{ item.src }} dest=~/{{ item.dest }} state=link
+      with_items:
         - { src: 'prde-emacs-config', dest: '.emacs.d' }
         - { src: 'prde-emacs-config/misc/flake8', dest: '.config/flake8' }
         - { src: 'prde-emacs-config/misc/profiles.clj', dest: '.lein/profiles.clj' }
+        - { src: 'prde-emacs-config/misc/global.sbt', dest: '.sbt/1.0/global.sbt' }
+        - { src: 'prde-emacs-config/misc/plugins.sbt', dest: '.sbt/1.0/plugins/plugins.sbt' }
       ignore_errors: yes
 
     - name: disable wayland until synergy gets support
