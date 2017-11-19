@@ -108,6 +108,8 @@
         - projects/prde
         - .quicklisp
         - bin
+        - .lein
+        - .sbt/1.0/plugins
 
     - name: download lein
       get_url: url=https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein dest=~/bin/lein
