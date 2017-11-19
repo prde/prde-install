@@ -112,7 +112,7 @@
         - .sbt/1.0/plugins
 
     - name: download lein
-      get_url: url=https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein dest=~/bin/lein
+      get_url: url=https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein dest=~/bin/lein mode=0744
 
     - name: lein first start
       shell: lein
