@@ -114,6 +114,9 @@
     - name: download lein
       get_url: url=https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein dest=~/bin/lein
 
+    - name: lein first start
+      shell: lein
+
     - name: download quicklisp
       get_url: url=https://beta.quicklisp.org/quicklisp.lisp dest=~/.quicklisp/quicklisp.lisp
 
