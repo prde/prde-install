@@ -101,6 +101,9 @@
         - bin
         - .lein
         - .sbt/1.0/plugins
+        - org/work
+        - org/home
+        - org/studies
 
     - name: download sbt repository
       get_url: url=https://bintray.com/sbt/rpm/rpm dest=/etc/yum.repos.d/bintray-sbt-rpm.repo
