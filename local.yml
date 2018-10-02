@@ -12,7 +12,9 @@
         - emacs
         - python3-ipython
         - docker
+        - python
         - python2-dnf
+        - python-libselinux
         - sbcl
         - java-1.8.0-openjdk
         - java-1.8.0-openjdk-devel
