@@ -11,9 +11,11 @@
         - gcc
         - emacs
         - python3-ipython
-        - docker
+        - python
         - python2-dnf
+        - python-libselinux
         - sbcl
+        - snapd
         - java-1.8.0-openjdk
         - java-1.8.0-openjdk-devel
         - java-1.8.0-openjdk-src
@@ -91,6 +93,23 @@
         - texlive-totcount
       become: true
       become_user: root
+
+    - name: install snap packages
+      shell: snap install {{ item }}
+      with_items:
+        - docker
+        - doctl
+      become: true
+      become_user: root
+      ignore_errors: yes
+
+    - name: install origin
+      dnf: name={{ item }} state=latest
+      with_items:
+        - origin
+      become: true
+      become_user: root
+      ignore_errors: yes
 
     - name: create directories
       file: path=~/{{ item }} state=directory mode=0755
@@ -198,3 +217,9 @@
       with_items:
         - '[ "$(grep EDITOR ~/.bashrc)" ] || echo "export EDITOR=\"emacsclient -c\"" >> ~/.bashrc'
         - 'xdg-mime default emacsclient.desktop $(grep "^text/x-*" /usr/share/mime/types)'
+
+    - name: update mlocate database
+      shell: updatedb
+      become: true
+      become_user: root
+      ignore_errors: yes
